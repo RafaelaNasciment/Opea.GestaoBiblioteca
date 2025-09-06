@@ -31,6 +31,8 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Mappings
                 .Property(p => p.StatusEmprestimo)
                 .HasColumnType("INT")
                 .IsRequired();
+
+            builder.HasOne(p => p.Livro).WithMany(p => p.Emprestimos).HasForeignKey(p => p.LivroId);
         }
     }
 }

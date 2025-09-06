@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Flunt.Notifications;
+using Microsoft.EntityFrameworkCore;
 using Opea.GestaoBiblioteca.Domain.Entities;
 
 namespace Opea.GestaoBiblioteca.Infrastructure.Context
@@ -7,10 +8,14 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Context
     {
         private readonly string _connectionString;
 
-        public AppDbContext(string connectionString)
+        public AppDbContext()
         {
-            _connectionString = connectionString;
+        }
 
+        public AppDbContext(
+            DbContextOptions<AppDbContext> options)
+            : base(options)
+        {
         }
 
         public DbSet<Livro> Livro { get; set; }
@@ -22,6 +27,11 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Context
             {
                 optionsBuilder.UseSqlServer(_connectionString);
             }
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Ignore<Notification>();
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }
 }

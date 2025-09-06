@@ -1,0 +1,6 @@
+@Opea.GestaoBiblioteca_HostAddress = http://localhost:5246
+
+GET {{Opea.GestaoBiblioteca_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

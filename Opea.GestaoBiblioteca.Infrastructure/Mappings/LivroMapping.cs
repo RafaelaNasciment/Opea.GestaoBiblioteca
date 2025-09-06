@@ -14,7 +14,7 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Mappings
 
             builder
                 .Property(p => p.DataCriacao)
-                .HasColumnType("DATETIME")
+                .HasColumnType("datetime2")
                 .IsRequired();
 
             builder

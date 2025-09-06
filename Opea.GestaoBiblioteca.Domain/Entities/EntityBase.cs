@@ -4,10 +4,13 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
 {
     public abstract class EntityBase : Notifiable<Notification>
     {
-        public EntityBase()
+        protected EntityBase()
+        {            
+        }
+        public EntityBase(Guid? id, DateTime? dateTime)
         {
-            Id = Guid.NewGuid();
-            DataCriacao = DateTime.Now;
+            Id = id ?? Guid.NewGuid();
+            DataCriacao = dateTime ?? DateTime.Now;
         }
 
         public Guid Id { get; set; } 

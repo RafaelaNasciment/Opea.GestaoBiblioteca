@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Opea.GestaoBiblioteca.Infrastructure.Context;
 
@@ -11,9 +12,11 @@ using Opea.GestaoBiblioteca.Infrastructure.Context;
 namespace Opea.GestaoBiblioteca.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250906230007_AdicionarSeedsLivro")]
+    partial class AdicionarSeedsLivro
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,13 +32,13 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DataCriacao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DATETIME");
 
                     b.Property<DateTime?>("DataDevolucao")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DATETIME");
 
                     b.Property<DateTime>("DataEmprestimo")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DATETIME");
 
                     b.Property<Guid>("LivroId")
                         .HasColumnType("uniqueidentifier");
@@ -48,33 +51,6 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Migrations
                     b.HasIndex("LivroId");
 
                     b.ToTable("Emprestimo", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000004"),
-                            DataCriacao = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DataEmprestimo = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            LivroId = new Guid("00000000-0000-0000-0000-000000000001"),
-                            StatusEmprestimo = 0
-                        },
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000005"),
-                            DataCriacao = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DataDevolucao = new DateTime(2025, 9, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataEmprestimo = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            LivroId = new Guid("00000000-0000-0000-0000-000000000002"),
-                            StatusEmprestimo = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("00000000-0000-0000-0000-000000000006"),
-                            DataCriacao = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            DataEmprestimo = new DateTime(2025, 9, 6, 0, 0, 0, 0, DateTimeKind.Utc),
-                            LivroId = new Guid("00000000-0000-0000-0000-000000000003"),
-                            StatusEmprestimo = 0
-                        });
                 });
 
             modelBuilder.Entity("Opea.GestaoBiblioteca.Domain.Entities.Livro", b =>

@@ -31,7 +31,6 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.EmprestimoService.Solicitar
             var emprestimo = new Domain.Entities.Emprestimo(
                 id: null,
                 dataCriacao: null,
-                dataEmprestimo: DateTime.UtcNow,
                 livroId: livro.Id
             );
 

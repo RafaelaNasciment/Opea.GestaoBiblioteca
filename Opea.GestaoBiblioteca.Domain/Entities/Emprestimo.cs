@@ -1,6 +1,4 @@
-﻿using Flunt.Notifications;
-using Flunt.Validations;
-using Opea.GestaoBiblioteca.Domain.Enums;
+﻿using Opea.GestaoBiblioteca.Domain.Enums;
 
 namespace Opea.GestaoBiblioteca.Domain.Entities
 {
@@ -13,11 +11,10 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
         public Emprestimo(
             Guid? id,
             DateTime? dataCriacao,
-            Guid livroId,
-            DateTime dataEmprestimo) : base(id, dataCriacao)
+            Guid livroId) : base(id, dataCriacao)
         {
             LivroId = livroId;
-            DataEmprestimo = dataEmprestimo;
+            DataEmprestimo = DataCriacao;
         }
 
         public Guid LivroId { get; set; }
@@ -28,15 +25,13 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
 
         public void DevolverEmprestimo()
         {
-            StatusEmprestimo = StatusEmprestimo.Devolvido;
+            if (StatusEmprestimo == StatusEmprestimo.Devolvido)            
+                AddNotification(nameof(StatusEmprestimo), "Empréstimo já foi devolvido!.");
+            else
+                StatusEmprestimo = StatusEmprestimo.Devolvido;
+
             DataDevolucao = DateTime.UtcNow;
             Livro.QuantidadeDisponivel++;
-            Validar();
-        }
-
-        public void SolicitarEmprestimo()
-        {
-            StatusEmprestimo = StatusEmprestimo.Ativo;
             Validar();
         }
 

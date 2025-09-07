@@ -30,9 +30,11 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
         public int QuantidadeDisponivel { get; set; }
         public virtual ICollection<Emprestimo> Emprestimos { get; set; }
 
-        public void AtualizarQuantidade(int novaQuantidade)
+        public void AdicionarEmprestimo(Emprestimo emprestimo)
         {
-            QuantidadeDisponivel = novaQuantidade;
+            Emprestimos ??= [];
+            Emprestimos.Add(emprestimo);
+            QuantidadeDisponivel--;
             Validar();
         }
 

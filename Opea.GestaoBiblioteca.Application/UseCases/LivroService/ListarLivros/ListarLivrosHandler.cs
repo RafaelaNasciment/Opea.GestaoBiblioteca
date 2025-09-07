@@ -11,7 +11,9 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.ListarLivros
             => _livroRepository = livroRepository;
         public async  Task<Response<ListarLivroResponse>> Handle(ListarLivrosRequest request, CancellationToken cancellationToken)
         {
-            var livros = await _livroRepository.GetAllAsync();
+            var livros = await _livroRepository.GetAllAsync(
+                cancellationToken,
+                x => x.Emprestimos);
 
             if (livros is null || !livros.Any())
                 return Response<ListarLivroResponse>.Ok(new ListarLivroResponse([]));

@@ -13,7 +13,6 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.CriarLivro
         
         public async Task<Response<LivroResponse>> Handle(CriarLivroRequest request, CancellationToken cancellationToken)
         {
-
             var livro = new Livro(
                 id: null,
                 dataCriacao: null,
@@ -26,7 +25,7 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.CriarLivro
             if (!livro.IsValid)            
                 return Response<LivroResponse>.Fail(livro.Notifications);            
 
-            await _livroRepository.AddAsync(livro);
+            await _livroRepository.AddAsync(livro, cancellationToken);
 
             return Response<LivroResponse>.Ok(data: LivroResponse.ConverterEntidadeParaResponse(livro));
         }

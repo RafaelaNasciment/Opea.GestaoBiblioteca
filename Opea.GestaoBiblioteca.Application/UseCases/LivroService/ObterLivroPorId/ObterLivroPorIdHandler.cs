@@ -15,7 +15,7 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.ObterLivroPorI
             if (request.Id == Guid.Empty)
                 return Response<LivroResponse>.Fail("Id", "Id do livro é obrigatório.");
 
-            var livro = await _livroRepository.GetByIdAsync(request.Id);
+            var livro = await _livroRepository.GetByIdAsync(request.Id, cancellationToken);
 
             if (livro is null)
                 return Response<LivroResponse>.Fail("Livro", "Livro não encontrado.");

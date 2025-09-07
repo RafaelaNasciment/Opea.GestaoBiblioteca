@@ -1,4 +1,6 @@
-﻿using Opea.GestaoBiblioteca.Domain.Enums;
+﻿using Flunt.Notifications;
+using Flunt.Validations;
+using Opea.GestaoBiblioteca.Domain.Enums;
 
 namespace Opea.GestaoBiblioteca.Domain.Entities
 {
@@ -12,12 +14,10 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
             Guid? id,
             DateTime? dataCriacao,
             Guid livroId,
-            DateTime dataEmprestimo, 
-            StatusEmprestimo statusEmprestimo) : base(id, dataCriacao)
+            DateTime dataEmprestimo) : base(id, dataCriacao)
         {
             LivroId = livroId;
             DataEmprestimo = dataEmprestimo;
-            StatusEmprestimo = statusEmprestimo;
         }
 
         public Guid LivroId { get; set; }
@@ -25,6 +25,21 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
         public DateTime? DataDevolucao { get; set; }
         public StatusEmprestimo StatusEmprestimo { get; set; } = StatusEmprestimo.Ativo;
         public virtual Livro Livro { get; set; }
+
+        public void DevolverEmprestimo()
+        {
+            StatusEmprestimo = StatusEmprestimo.Devolvido;
+            DataDevolucao = DateTime.UtcNow;
+            Livro.QuantidadeDisponivel++;
+            Validar();
+        }
+
+        public void SolicitarEmprestimo()
+        {
+            StatusEmprestimo = StatusEmprestimo.Ativo;
+            Validar();
+        }
+
         public override bool Validar()
         {
             return IsValid;

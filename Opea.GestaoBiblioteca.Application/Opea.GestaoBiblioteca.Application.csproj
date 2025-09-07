@@ -12,12 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UseCases\EmprestimoService\DevolverEmprestimo\" />
-    <Folder Include="UseCases\EmprestimoService\ListarEmprestimo\" />
-    <Folder Include="UseCases\EmprestimoService\SolicitarEmprestimo\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Opea.GestaoBiblioteca.Domain\Opea.GestaoBiblioteca.Domain.csproj" />
   </ItemGroup>
 

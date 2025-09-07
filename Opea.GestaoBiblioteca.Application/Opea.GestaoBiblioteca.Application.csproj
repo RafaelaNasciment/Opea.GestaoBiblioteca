@@ -6,4 +6,19 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Flunt" Version="2.0.5" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="UseCases\EmprestimoService\DevolverEmprestimo\" />
+    <Folder Include="UseCases\EmprestimoService\ListarEmprestimo\" />
+    <Folder Include="UseCases\EmprestimoService\SolicitarEmprestimo\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Opea.GestaoBiblioteca.Domain\Opea.GestaoBiblioteca.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

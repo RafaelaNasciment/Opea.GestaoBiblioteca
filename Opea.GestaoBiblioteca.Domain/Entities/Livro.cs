@@ -42,7 +42,7 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
                 .IsNotNullOrWhiteSpace(Titulo, nameof(Titulo), "Titulo não informado!")
                 .IsNotNullOrWhiteSpace(Autor, nameof(Autor), "Autor não informado!")
                 .IsGreaterOrEqualsThan(AnoPublicacao, 1, nameof(AnoPublicacao), "Ano de publicação inválido!")
-                .IsGreaterOrEqualsThan(QuantidadeDisponivel, 0, nameof(QuantidadeDisponivel), "Quantidade não pode ser negativa!");
+                .IsGreaterOrEqualsThan(QuantidadeDisponivel, 1, nameof(QuantidadeDisponivel), "Quantidade inválida!");
 
             AddNotifications(contrato);
 

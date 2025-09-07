@@ -2,13 +2,13 @@
 
 namespace Opea.GestaoBiblioteca.Domain.Interfaces
 {
-    public interface IRepositoryBase<T> : IDisposable where T : EntityBase
+    public interface IRepositoryBase<T> where T : EntityBase
     {
-        IList<T> GetAll();
-        T? GetById(Guid id);
-        void Add(T entity);
-        void Update(T entity);
-        void AddList(IEnumerable<T> entity);
-        void Delete(Guid id);
+        Task<IList<T>> GetAllAsync();
+        Task<T?> GetByIdAsync(Guid id);
+        Task AddAsync(T entity);
+        Task UpdateAsync(T entity);
+        Task AddListAsync(IEnumerable<T> entity);
+        Task DeleteAsync(Guid id);
     }
 }

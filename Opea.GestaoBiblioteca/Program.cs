@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
+using Opea.GestaoBiblioteca.Application.UseCases.LivroService.CriarLivro;
+using Opea.GestaoBiblioteca.Domain.Interfaces;
 using Opea.GestaoBiblioteca.Infrastructure.Context;
+using Opea.GestaoBiblioteca.Infrastructure.Repositories;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +21,14 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")),
     ServiceLifetime.Scoped);
+
+// Repositórios (DI)
+builder.Services.AddScoped<ILivroRepository, LivroRepository>();
+builder.Services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
+
+builder.Services.AddMediatR(cfg =>
+    cfg.RegisterServicesFromAssemblies(typeof(CriarLivroRequest).Assembly));
+
 
 var app = builder.Build();
 

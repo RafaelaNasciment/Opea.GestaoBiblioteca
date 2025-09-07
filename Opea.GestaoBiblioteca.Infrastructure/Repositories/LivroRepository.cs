@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Opea.GestaoBiblioteca.Domain.Entities;
+using Opea.GestaoBiblioteca.Domain.Interfaces;
+using Opea.GestaoBiblioteca.Infrastructure.Context;
 
 namespace Opea.GestaoBiblioteca.Infrastructure.Repositories
 {
-    internal class LivroRepository
+    public class LivroRepository : BaseRepository<Livro>, ILivroRepository
     {
+        public LivroRepository(AppDbContext context) : base(context)
+        {
+        }
     }
 }

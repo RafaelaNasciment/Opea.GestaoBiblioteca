@@ -3,7 +3,6 @@ using Opea.GestaoBiblioteca.Application.UseCases.LivroService.CriarLivro;
 using Opea.GestaoBiblioteca.Domain.Interfaces;
 using Opea.GestaoBiblioteca.Infrastructure.Context;
 using Opea.GestaoBiblioteca.Infrastructure.Repositories;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +30,13 @@ builder.Services.AddMediatR(cfg =>
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

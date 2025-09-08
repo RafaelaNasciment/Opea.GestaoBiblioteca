@@ -9,13 +9,15 @@
 - **Docker** instalado  
 - **.NET 8 SDK** (para executar a API localmente)
 - **SSMS – SQL Server Management Studio** (opcional, para administrar o banco)
-- 
+  
 ### 1) Configure a conexão com o SQL Server
 No CMD execute os seguintes comandos:
-docker volume create mssql-data
 
-- Suba o container (PowerShell/CMD – uma linha):
-docker run -d --name sql-local -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Opea.Database" -e "MSSQL_PID=Developer" -e "TZ=America/Sao_Paulo" -p 1433:1433 -v mssql-data:/var/opt/mssql --restart unless-stopped mcr.microsoft.com/mssql/server:2022-latest
+- docker volume create mssql-data
+
+Suba o container (PowerShell/CMD – uma linha):
+  
+- docker run -d --name sql-local -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Opea.Database" -e "MSSQL_PID=Developer" -e "TZ=America/Sao_Paulo" -p 1433:1433 -v mssql-data:/var/opt/mssql --restart unless-stopped mcr.microsoft.com/mssql/server:2022-latest
 ### Testar o container (sqlcmd dentro do container)
 docker exec -it sql-local /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Opea.Database" -Q "SELECT @@VERSION;"
 

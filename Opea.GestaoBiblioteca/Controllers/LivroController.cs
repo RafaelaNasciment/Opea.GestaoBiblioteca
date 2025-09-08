@@ -13,6 +13,7 @@ namespace Opea.GestaoBiblioteca.Api.Controllers
     public class LivroController : ControllerBase
     {
         private readonly IMediator _mediator;
+
         public LivroController(
             IMediator mediator)
         {
@@ -45,6 +46,5 @@ namespace Opea.GestaoBiblioteca.Api.Controllers
         {
             return Ok(await _mediator.Send(request, cancellationToken));
         }
-
     }
 }

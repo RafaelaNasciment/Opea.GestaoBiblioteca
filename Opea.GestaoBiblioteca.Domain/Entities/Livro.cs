@@ -6,15 +6,15 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
     public class Livro : EntityBase
     {
         public Livro()
-        {            
+        {
         }
 
         public Livro(
             Guid? id,
             DateTime? dataCriacao,
-            string titulo, 
-            string autor, 
-            int anoPublicacao, 
+            string titulo,
+            string autor,
+            int anoPublicacao,
             int quantidadeDisponivel) : base(id, dataCriacao)
         {
             Titulo = titulo;

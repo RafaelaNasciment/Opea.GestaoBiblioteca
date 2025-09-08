@@ -25,7 +25,7 @@ namespace Opea.GestaoBiblioteca.Domain.Entities
 
         public void DevolverEmprestimo()
         {
-            if (StatusEmprestimo == StatusEmprestimo.Devolvido)            
+            if (StatusEmprestimo == StatusEmprestimo.Devolvido)
                 AddNotification(nameof(StatusEmprestimo), "Empréstimo já foi devolvido!.");
             else
                 StatusEmprestimo = StatusEmprestimo.Devolvido;

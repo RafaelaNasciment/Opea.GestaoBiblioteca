@@ -7,6 +7,7 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.ObterLivroPorI
     public class ObterLivroPorIdHandler : IObterLivroPorIdHandler
     {
         private readonly ILivroRepository _livroRepository;
+
         public ObterLivroPorIdHandler(ILivroRepository livroRepository)
             => _livroRepository = livroRepository;
 

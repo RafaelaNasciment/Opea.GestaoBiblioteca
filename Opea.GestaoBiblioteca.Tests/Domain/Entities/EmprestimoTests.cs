@@ -35,7 +35,7 @@ namespace Opea.GestaoBiblioteca.Tests.Domain.Entities
             {
                 StatusEmprestimo = GestaoBiblioteca.Domain.Enums.StatusEmprestimo.Devolvido,
                 Livro = new Livro(Guid.NewGuid(), null, "Titulo informado", "Autor Válido", 2000, 1)
-            };                     
+            };
             // act
             emprestimo.DevolverEmprestimo();
 
@@ -50,9 +50,9 @@ namespace Opea.GestaoBiblioteca.Tests.Domain.Entities
         {
             // arrange
             var emprestimo = new Emprestimo(Guid.NewGuid(), null, Guid.NewGuid())
-            {                
-            };                     
-            // act           
+            {
+            };
+            // act
 
             // assert
             Assert.True(emprestimo.IsValid);

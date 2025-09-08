@@ -4,5 +4,6 @@ using Opea.GestaoBiblioteca.Application.UseCases.Responses;
 
 namespace Opea.GestaoBiblioteca.Application.UseCases.EmprestimoService.DevolverEmprestimo
 {
-    public interface IDevolverEmprestimoHandler : IRequestHandler<DevolverEmprestimoRequest, Response<EmprestimoResponse>> { }
+    public interface IDevolverEmprestimoHandler : IRequestHandler<DevolverEmprestimoRequest, Response<EmprestimoResponse>>
+    { }
 }

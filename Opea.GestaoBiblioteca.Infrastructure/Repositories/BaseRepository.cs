@@ -32,11 +32,11 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Repositories
         public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
         {
             var entity = await _dbSet.FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
-            if (entity is null) 
+            if (entity is null)
                 return;
 
-            _dbSet.Remove(entity);               
-            await _context.SaveChangesAsync();  
+            _dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IList<T>> GetAllAsync(CancellationToken cancellationToken, params Expression<Func<T, object>>[] includes)
@@ -61,4 +61,3 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Repositories
         }
     }
 }
-

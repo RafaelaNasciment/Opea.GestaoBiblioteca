@@ -7,7 +7,7 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Repositories
     public class EmprestimoRepository : BaseRepository<Emprestimo>, IEmprestimoRepository
     {
         public EmprestimoRepository(AppDbContext context) : base(context)
-        {            
+        {
         }
     }
 }

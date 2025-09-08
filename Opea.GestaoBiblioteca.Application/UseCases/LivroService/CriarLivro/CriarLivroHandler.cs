@@ -8,9 +8,10 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.CriarLivro
     public class CriarLivroHandler : ICriarLivroHandler
     {
         private readonly ILivroRepository _livroRepository;
-        public CriarLivroHandler(ILivroRepository livroRepository)        
+
+        public CriarLivroHandler(ILivroRepository livroRepository)
             => _livroRepository = livroRepository;
-        
+
         public async Task<Response<LivroResponse>> Handle(CriarLivroRequest request, CancellationToken cancellationToken)
         {
             var livro = new Livro(
@@ -21,9 +22,9 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.CriarLivro
                 anoPublicacao: request.AnoPublicacao,
                 quantidadeDisponivel: request.QuantidadeDisponivel
             );
-    
-            if (!livro.IsValid)            
-                return Response<LivroResponse>.Fail(livro.Notifications);            
+
+            if (!livro.IsValid)
+                return Response<LivroResponse>.Fail(livro.Notifications);
 
             await _livroRepository.AddAsync(livro, cancellationToken);
 

@@ -2,7 +2,7 @@
 using Opea.GestaoBiblioteca.Domain.Entities;
 
 namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.Common
-{   
+{
     public record LivroResponse(
         Guid Id,
         string Titulo,

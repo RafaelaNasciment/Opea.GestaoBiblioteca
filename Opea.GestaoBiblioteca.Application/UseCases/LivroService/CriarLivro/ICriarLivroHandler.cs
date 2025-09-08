@@ -4,5 +4,6 @@ using Opea.GestaoBiblioteca.Application.UseCases.Responses;
 
 namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.CriarLivro
 {
-    public interface ICriarLivroHandler : IRequestHandler<CriarLivroRequest, Response<LivroResponse>> { }
+    public interface ICriarLivroHandler : IRequestHandler<CriarLivroRequest, Response<LivroResponse>>
+    { }
 }

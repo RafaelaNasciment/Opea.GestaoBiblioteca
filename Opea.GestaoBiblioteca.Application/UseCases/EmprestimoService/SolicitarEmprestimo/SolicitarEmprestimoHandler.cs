@@ -13,7 +13,7 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.EmprestimoService.Solicitar
         {
             _emprestimoRepository = emprestimoRepository;
             _livroRepository = livroRepository;
-        } 
+        }
 
         public async Task<Response<EmprestimoResponse>> Handle(SolicitarEmprestimoRequest request, CancellationToken cancellationToken)
         {
@@ -25,8 +25,8 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.EmprestimoService.Solicitar
             if (livro is null)
                 return Response<EmprestimoResponse>.Fail("Livro", "Livro não encontrado.");
 
-            if (livro.QuantidadeDisponivel <= 0)            
-                return Response<EmprestimoResponse>.Fail("Livro", "Livro sem quantidade disponível para empréstimo.");            
+            if (livro.QuantidadeDisponivel <= 0)
+                return Response<EmprestimoResponse>.Fail("Livro", "Livro sem quantidade disponível para empréstimo.");
 
             var emprestimo = new Domain.Entities.Emprestimo(
                 id: null,

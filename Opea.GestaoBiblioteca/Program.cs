@@ -28,7 +28,6 @@ builder.Services.AddScoped<IEmprestimoRepository, EmprestimoRepository>();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblies(typeof(CriarLivroRequest).Assembly));
 
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -36,7 +35,6 @@ using (var scope = app.Services.CreateScope())
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
 }
-
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

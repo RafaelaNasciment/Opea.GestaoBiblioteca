@@ -30,6 +30,7 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Context
                 optionsBuilder.UseSqlServer(_connectionString);
             }
         }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Ignore<Notification>();
@@ -48,6 +49,5 @@ namespace Opea.GestaoBiblioteca.Infrastructure.Context
                 new Emprestimo { Id = MigrationBase.BaseId006, LivroId = MigrationBase.BaseId003, DataCriacao = MigrationBase.DataBase, DataEmprestimo = MigrationBase.DataBase, StatusEmprestimo = StatusEmprestimo.Ativo }
             );
         }
-
     }
 }

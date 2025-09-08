@@ -8,10 +8,9 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.EmprestimoService.DevolverE
     {
         private readonly IEmprestimoRepository _emprestimoRepository;
 
-        public DevolverEmprestimoHandler(IEmprestimoRepository emprestimoRepository)      
-            => _emprestimoRepository = emprestimoRepository;       
-            
-        
+        public DevolverEmprestimoHandler(IEmprestimoRepository emprestimoRepository)
+            => _emprestimoRepository = emprestimoRepository;
+
         public async Task<Response<EmprestimoResponse>> Handle(DevolverEmprestimoRequest request, CancellationToken cancellationToken)
         {
             if (request.LivroId == Guid.Empty)
@@ -21,7 +20,7 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.EmprestimoService.DevolverE
                 return Response<EmprestimoResponse>.Fail("Id", "Id do empréstimo é obrigatório.");
 
             var emprestimo = await _emprestimoRepository.GetByIdAsync(
-                request.EmprestimoId, 
+                request.EmprestimoId,
                 cancellationToken,
                 x => x.Livro);
 
@@ -36,8 +35,8 @@ namespace Opea.GestaoBiblioteca.Application.UseCases.EmprestimoService.DevolverE
 
             emprestimo.DevolverEmprestimo();
 
-            if(!emprestimo.IsValid)
-                return Response<EmprestimoResponse>.Fail(emprestimo.Notifications); 
+            if (!emprestimo.IsValid)
+                return Response<EmprestimoResponse>.Fail(emprestimo.Notifications);
 
             await _emprestimoRepository.UpdateAsync(emprestimo, cancellationToken);
 

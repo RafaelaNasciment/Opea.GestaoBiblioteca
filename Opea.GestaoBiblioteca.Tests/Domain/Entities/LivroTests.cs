@@ -18,7 +18,7 @@ namespace Opea.GestaoBiblioteca.Tests.Domain.Entities
             // assert
             Assert.False(valido);
             Assert.NotEmpty(livro.Notifications);
-            Assert.Contains("Titulo não informado!",  livro.Notifications.Select(x => x.Message));
+            Assert.Contains("Titulo não informado!", livro.Notifications.Select(x => x.Message));
         }
 
         [Fact(DisplayName = "Não deve criar livro sem autor")]
@@ -34,9 +34,8 @@ namespace Opea.GestaoBiblioteca.Tests.Domain.Entities
             // assert
             Assert.False(valido);
             Assert.NotEmpty(livro.Notifications);
-            Assert.Contains("Autor não informado!",  livro.Notifications.Select(x => x.Message));
+            Assert.Contains("Autor não informado!", livro.Notifications.Select(x => x.Message));
         }
-
 
         [Fact(DisplayName = "Não deve criar livro sem quantidadeDisponivel")]
         [Trait("Entity", "Emprestimo")]
@@ -63,7 +62,7 @@ namespace Opea.GestaoBiblioteca.Tests.Domain.Entities
         {
             // arrange
             var livro = new Livro(Guid.NewGuid(), null, "Titulo informado", "Autor Válido", 2000, quantidadeDisponivel);
-            var quantidadeAtualizada = quantidadeDisponivel-1;
+            var quantidadeAtualizada = quantidadeDisponivel - 1;
             // act
             livro.AdicionarEmprestimo(new Emprestimo(Guid.NewGuid(), null, livro.Id));
 
@@ -84,6 +83,5 @@ namespace Opea.GestaoBiblioteca.Tests.Domain.Entities
             // assert
             Assert.False(!valido);
         }
-
     }
 }

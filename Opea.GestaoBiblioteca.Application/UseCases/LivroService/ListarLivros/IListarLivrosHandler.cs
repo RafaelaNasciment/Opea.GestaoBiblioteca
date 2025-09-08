@@ -4,5 +4,6 @@ using Opea.GestaoBiblioteca.Application.UseCases.Responses;
 
 namespace Opea.GestaoBiblioteca.Application.UseCases.LivroService.ListarLivros
 {
-    public interface IListarLivrosHandler : IRequestHandler<ListarLivrosRequest, Response<ListarLivroResponse>> { }
+    public interface IListarLivrosHandler : IRequestHandler<ListarLivrosRequest, Response<ListarLivroResponse>>
+    { }
 }

@@ -6,7 +6,7 @@ namespace Opea.GestaoBiblioteca.Application.Services.EmprestimoService.Common
         Guid Id,
         DateTime DataCriacao,
         DateTime DataEmprestimo,
-        DateTime? DataDevolucao, 
+        DateTime? DataDevolucao,
         StatusEmprestimo StatusEmprestimo)
     {
         public static EmprestimoResponse ConverterEntidadeParaResponse(Domain.Entities.Emprestimo emprestimo)

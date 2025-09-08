@@ -12,6 +12,7 @@ namespace Opea.GestaoBiblioteca.Api.Controllers
     public class EmprestimoController : ControllerBase
     {
         private readonly IMediator _mediator;
+
         public EmprestimoController(
             IMediator mediator)
         {

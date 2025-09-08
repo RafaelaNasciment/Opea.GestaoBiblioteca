@@ -6,33 +6,31 @@
 ## ⚙️ Como Executar
 
 ### Pré-requisitos
-- **SQL Server** instalado  
+- **Docker** instalado  
 - **.NET 8 SDK** (para executar a API localmente)
-
+- **SSMS – SQL Server Management Studio** (opcional, para administrar o banco)
+- 
 ### 1) Configure a conexão com o SQL Server
-Edite a seção **`ConnectionStrings`** nos arquivos:
-- `Opea.GestaoBiblioteca.Api/appsettings.json`
-- `Opea.GestaoBiblioteca.Infrastructure/appsettings.json`
+No CMD execute os seguintes comandos:
+docker volume create mssql-data
 
-Ajuste o **`Server`** para o seu servidor local. Exemplos:
+- Suba o container (PowerShell/CMD – uma linha):
+docker run -d --name sql-local -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Opea.Database" -e "MSSQL_PID=Developer" -e "TZ=America/Sao_Paulo" -p 1433:1433 -v mssql-data:/var/opt/mssql --restart unless-stopped mcr.microsoft.com/mssql/server:2022-latest
+### Testar o container (sqlcmd dentro do container)
+docker exec -it sql-local /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Opea.Database" -Q "SELECT @@VERSION;"
 
-```json
-// Autenticação SQL (usuário/senha)
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost;Database=OpeaBiblioteca;User Id=sa;Password=SuaSenhaForte!;Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=True"
-  }
-}
 ```
 
-```json
-// Instância nomeada (SQLEXPRESS)
-{
-  "ConnectionStrings": {
-    "DefaultConnection": "Server=localhost\\SQLEXPRESS;Database=OpeaBiblioteca;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True"
-  }
-}
-```
+## 🖥️ Conectar pelo SSMS (SQL Server Management Studio)
+
+1. Abrir o **SSMS** → **Conectar**.
+2. **Server name**: `localhost,1433`  (ou `localhost,1435` se mudou a porta)
+3. **Authentication**: *SQL Server Authentication*
+4. **Login**: `sa`
+5. **Password**: `Opea.Database`
+6. Clique em **Opções >>** → **Propriedades de Conexão** → marque **Confiar no certificado do servidor** (*Trust server certificate*).  
+   > O container usa certificado autoassinado; manter **Encrypt=True** e **TrustServerCertificate=True** é o caminho certo em DEV.
+7. Conectar.
 
 ### 2) Restaurar e compilar
 ```bash
